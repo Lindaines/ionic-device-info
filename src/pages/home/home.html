@@ -5,13 +5,31 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <h3>Current Time</h3>
+  <p *ngIf="stat?.level > 0">{{myDate}}</p>
+
+  <h3>Battery Level    </h3>
+
+  <div class="panel panel-primary"
+  [ngStyle]="{'background-color': 'green'}">
+  <p *ngIf="stat?.level >= 30" > {{stat?.level}}  </p>
+  </div>
+
+  <div class="panel panel-primary"
+  [ngStyle]="{'background-color': 'yellow'}">
+  <p *ngIf="stat?.level < 30 && stat?.level >= 15 " > {{stat?.level}}  </p>
+  </div>
+  
+
+  <div class="panel panel-primary"
+  [ngStyle]="{'background-color': 'green'}">
+  <p *ngIf="stat?.level <  15 " > {{stat?.level}}  </p>
+  </div> 
+  
+  <h3> Is Puggled</h3>
+  <p>{{stat?.isPlugged}}</p>
+  <button ion-button small (click)  ="getStatus()">Get Battery Status</button>
+  
+
 </ion-content>
+
